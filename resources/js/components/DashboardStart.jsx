@@ -3,6 +3,7 @@ import React from 'react'
 import { HiOutlineAcademicCap, HiOutlineAdjustments } from 'react-icons/hi'
 import { PiStudent } from "react-icons/pi";
 import { FaSchool } from "react-icons/fa";
+import { FaMale, FaFemale } from 'react-icons/fa';
 
 const DashboardStart = () => {
   const [totalStudents, setTotalStudents] = useState(0);
@@ -74,7 +75,7 @@ const DashboardStart = () => {
 
       <BorderWraper>
         <div className='rounded-full h-12 w-12 items-center justify-center flex bg-blue-600'>
-          <PiStudent className='text-2xl text-white ' />
+          <FaMale className='text-2xl text-white' /> {/* Male Icon */}
         </div>
         <div className='pl-4'>
           <span className='text-sm text-gray-400 font-light'>Male Students</span>
@@ -84,9 +85,10 @@ const DashboardStart = () => {
         </div>
       </BorderWraper>
 
+      {/* Female Students Card */}
       <BorderWraper>
         <div className='rounded-full h-12 w-12 items-center justify-center flex bg-pink-600'>
-          <PiStudent className='text-2xl text-white ' />
+          <FaFemale className='text-2xl text-white' /> {/* Female Icon */}
         </div>
         <div className='pl-4'>
           <span className='text-sm text-gray-400 font-light'>Female Students</span>
