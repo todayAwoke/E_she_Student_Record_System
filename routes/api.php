@@ -16,3 +16,4 @@ Route::get('/students/count', [StudentController::class, 'getTotalStudents']);
 Route::get('/university/count', [UniversityController::class, 'getTotalUniversities']);
 Route::get('/students/count/male', [StudentController::class, 'getMaleStudentsCount']);
 Route::get('/students/count/female', [StudentController::class, 'getFemaleStudentsCount']);
+Route::get('/api/enrollments', [EnrollmentController::class, 'getEnrollmentData']);

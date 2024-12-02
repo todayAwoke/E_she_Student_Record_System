@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } from 'recharts';
+import axios from 'axios';
 
 const data = [
     { name: 'Extension', Male: 200, Female: 300 },
@@ -13,11 +14,22 @@ const data = [
 ];
 
 const TransactionChart = () => {
+    const [enrollmentData, setEnrollmentData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/enrollment_type')
+            .then(response => {
+                setEnrollmentData(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching enrollment data:', error);
+            });
+    }, []);
     return (
         <div className='   bg-white p-4 rounded-sm border border-gray-200 flex flex-col ' style={{ height: '350px', width: '100%', }}>
             <strong className='text-gray-700 text-lg'>Enrollment</strong>
             <ResponsiveContainer>
-                <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <BarChart data={enrollmentData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
