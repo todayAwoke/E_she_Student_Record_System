@@ -11,7 +11,7 @@ class Student extends Model
 
     protected $fillable = [
         'university_id',
-        'enrollment_type_id',
+        'enrollment_id',
         'first_name',
         'father_name',
         'grand_father_name',

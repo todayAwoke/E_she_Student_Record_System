@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('university_id')->constrained()->onDelete('cascade'); // Foreign key for university
-            $table->foreignId('enrollment_type_id')->constrained()->onDelete('cascade'); // Foreign key for enrollment type
+            $table->foreignId('enrollment_id')->constrained()->onDelete('cascade'); // Foreign key for enrollment type
             $table->string('first_name');
             $table->string('father_name');
             $table->string('grand_father_name');
