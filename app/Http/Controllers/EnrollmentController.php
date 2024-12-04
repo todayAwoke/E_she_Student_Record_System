@@ -23,4 +23,21 @@ class EnrollmentController extends Controller
         return response()->json($enrollments);
     }
 
+
+        public function getGenderDistribution()
+        {
+            $genderCounts = DB::table('students')
+                ->select(
+                    DB::raw("CASE
+                                WHEN gender IS NULL OR gender = '' THEN 'No Data'
+                                ELSE gender
+                            END as gender"), 
+                    DB::raw('COUNT(*) as count'))
+                ->groupBy('gender')
+                ->get();
+
+            return response()->json($genderCounts);
+        }
+
+
 }

@@ -18,3 +18,4 @@ Route::get('/university/count', [UniversityController::class, 'getTotalUniversit
 Route::get('/students/count/male', [StudentController::class, 'getMaleStudentsCount']);
 Route::get('/students/count/female', [StudentController::class, 'getFemaleStudentsCount']);
 Route::get('/enrollments', [EnrollmentController::class, 'getEnrollmentData']);
+Route::get('/gender-distribution', [EnrollmentController::class, 'getGenderDistribution']);
