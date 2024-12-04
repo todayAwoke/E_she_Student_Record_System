@@ -3,30 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class EnrollmentController extends Controller
 {
-    public function getEnrollmentData()
+        public function getEnrollmentData()
     {
-        // Query to group by enrollment_type and gender, counting students in each group
         $enrollments = DB::table('students')
-            ->select('enrollment_type', 'gender', DB::raw('count(*) as count'))
-            ->groupBy('enrollment_type', 'gender')
+            ->join('enrollment', 'students.enrollment_id', '=', 'enrollment.id')
+            ->select(
+                'enrollment.enrollment_type', // Get the enrollment type
+                DB::raw('SUM(CASE WHEN students.gender = "Male" THEN 1 ELSE 0 END) as Male'),
+                DB::raw('SUM(CASE WHEN students.gender = "Female" THEN 1 ELSE 0 END) as Female')
+            )
+            ->groupBy('enrollment.enrollment_type')
             ->get();
 
-        // Transforming data into a suitable format for the chart
-        $formattedData = [];
-        foreach ($enrollments as $enrollment) {
-            $type = $enrollment->enrollment_type;
-            if (!isset($formattedData[$type])) {
-                $formattedData[$type] = ['name' => $type, 'Male' => 0, 'Female' => 0];
-            }
-            $formattedData[$type][$enrollment->gender] = $enrollment->count;
-        }
-
-        // Reset array keys for a clean array output
-        $formattedData = array_values($formattedData);
-
-        return response()->json($formattedData);
+        return response()->json($enrollments);
     }
+
 }
