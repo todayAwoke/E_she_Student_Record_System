@@ -6,6 +6,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\EnrollmentController;
 use App\Models\University;
+use App\Http\Controllers\StudentDataController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,3 +21,4 @@ Route::get('/students/count/male', [StudentController::class, 'getMaleStudentsCo
 Route::get('/students/count/female', [StudentController::class, 'getFemaleStudentsCount']);
 Route::get('/enrollments', [EnrollmentController::class, 'getEnrollmentData']);
 Route::get('/gender-distribution', [EnrollmentController::class, 'getGenderDistribution']);
+Route::get('/student-data', [StudentDataController::class, 'getStudentData']);
